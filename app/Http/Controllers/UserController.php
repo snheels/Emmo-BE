@@ -93,7 +93,7 @@ class UserController extends Controller
         ], 201);
     }
 
-    public function show(string $id)
+    public function show($id)
     {
         $user = User::findOrFail($id);
         return response()->json([
@@ -101,7 +101,7 @@ class UserController extends Controller
         ]);
     }
 
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
         $user = User::findOrFail($id);
         $request->validate([
@@ -144,7 +144,7 @@ class UserController extends Controller
         return Excel::download(new UserExport, 'users.xlsx');
     }
 
-    public function destroy(string $id)
+    public function destroy($id)
     {
         $user = User::findOrFail($id);
         $user->delete();

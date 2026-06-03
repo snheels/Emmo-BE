@@ -217,7 +217,7 @@ class TaskController extends Controller
                 ], 403);
             }
         } elseif ($user->role === 'project_manager') {
-            if (! $task->project || $task->project->project_manager_id !== $user->id) {
+            if (!$task->project || $task->project->project_manager_id !== $user->id) {
                 return response()->json([
                     'message' => 'no access',
                 ], 403);
@@ -257,7 +257,6 @@ class TaskController extends Controller
     {
         $task = Task::onlyTrashed()->findOrFail($id);
         $task->restore();
-        $task->refresh();
 
         return response()->json([
             'message' => 'Restore',
@@ -269,7 +268,7 @@ class TaskController extends Controller
     {
         $task = Task::onlyTrashed()->where('id', $id)->first();
 
-        if (! $task) {
+        if (!$task) {
             return response()->json([
                 'message' => 'Data not found',
             ]);

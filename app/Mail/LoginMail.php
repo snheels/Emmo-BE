@@ -11,7 +11,6 @@ use Illuminate\Queue\SerializesModels;
 class LoginMail extends Mailable
 {
     use Queueable, SerializesModels;
-
     public string $name;
     public string $password;
     public string $email;
